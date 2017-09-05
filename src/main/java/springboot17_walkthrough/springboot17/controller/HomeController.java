@@ -1,4 +1,4 @@
-package springboot17_walkthrough.springboot17;
+package springboot17_walkthrough.springboot17.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,4 +13,14 @@ public class HomeController {
     public String logon(){
         return"login";
 }
+
+    @RequestMapping("/admin")
+    public String admin(){
+        return "admin";
+    }
+
+    @RequestMapping("/secure")
+    public String secure(){
+        return "secure";
+    }
 }

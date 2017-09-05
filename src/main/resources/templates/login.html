@@ -1,11 +1,22 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymleaf.org"
-  xmlns:sec="www.thymleaf.org/thymleaf-extras-springsecurity3">
+      xmlns:sec="www.thymleaf.org/thymleaf-extras-springsecurity3">
 <head>
     <!--<meta charset="UTF-8">-->
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+
     <title>Spring Security Example</title>
+
+    <!-- Theme CSS -->
+    <link href="/css/login.css" rel="stylesheet" >
+
 </head>
 <body>
+<!--<div id="bg"></div>-->
 <div th:if="${param.error}">
     Invalid username and password.
 </div>
@@ -13,9 +24,14 @@
     You have been logged out.
 </div>
 <form th:action="@{/login}" method="post">
-    <div><lable>User Name:<input type="text" name="username"/></lable></div>
-    <div><lable>Password:<input type="password" name="password"/></lable></div>
-    <div><input type="submit" value="Sign In"/></div>
+
+    <label for=""></label>
+    <input type="text" name="username"  placeholder="username" class="name"/>
+
+    <label for=""></label>
+    <input type="password" name="password" id="" placeholder="password" class="pass"/>
+    <button type="submit">login to your account</button>
+
 </form>
 </body>
 </html>
