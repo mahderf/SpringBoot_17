@@ -6,13 +6,21 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import springboot17_walkthrough.springboot17.models.Role;
 import springboot17_walkthrough.springboot17.models.User;
+import springboot17_walkthrough.springboot17.repository.RoleRepository;
 import springboot17_walkthrough.springboot17.repository.UserRepository;
+
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 @Controller
 public class HomeController {
     @Autowired
     UserRepository userRepository;
+    @Autowired
+    RoleRepository roleRepository;
 
     @RequestMapping("/")
     public String index()
@@ -42,8 +50,21 @@ public class HomeController {
     @PostMapping("/signup")
     public String postNewUser(@ModelAttribute("newuser") User otheruser){
         otheruser.setEnabled(true);
-        userRepository.save(otheruser);
-        return"postuser";
 
+        Role newrole=new Role();
+        newrole.setRole("USER" );
+
+       roleRepository.save(newrole);
+//        Collection<User>newcolluser=
+//         newrole.setUsers();
+
+        Set<Role> roles= new HashSet<>();
+        roles.add(newrole);
+
+        otheruser.setRoles(roles);
+        userRepository.save(otheruser);
+
+
+        return"postuser";
     }
 }
