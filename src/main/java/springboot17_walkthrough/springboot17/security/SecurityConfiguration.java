@@ -28,7 +28,7 @@ protected void configure(HttpSecurity http) throws Exception {
 
     http
             .authorizeRequests()
-            .antMatchers("/","/css/**","/js/**","../css/**").permitAll()
+            .antMatchers("/signup","/css/**","/js/**").permitAll()
             .antMatchers("/admin")
             .access("hasRole('ROLE_ADMIN')")
             .antMatchers("/admin").access("hasRole('ROLE_ADMIN')")
