@@ -1,34 +1,139 @@
 <!DOCTYPE html>
-<html  xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head lang="en">
-    <meta charset="UTF-8"/>
-    <title>Security Demonstation</title>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Robo Resume</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+
+    <!-- Plugin CSS -->
+    <link href="../vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../css/creative.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/formcss.css">
 
 </head>
-<body>
 
-<h2>It worked!</h2>
-<div sec:authorize="isAuthenticated()">
-    Welcome Back <span sec:authentication="name"></span>
-</div>
-<div sec:authorize="hasAuthority('ADMIN')">
-    You are an admin to this --app.
-    <a href="/secure">Secure Page</a>
-    <!--<a href="/logout"> Logout</a>-->
-    <a href="/addadmin"> Give Admin access</a>
-</div>
-<div sec:authorize="hasAuthority('USER')">
-    <a href="/editprofile">Edit Profile</a>
-    <a href="/logout">Logout</a>
-    <a href="/addmoreinfo">add more info</a>
-</div><div sec:authorize="hasAuthority('COMPANY')">
-    <a href="/companyupdates">Post Updates</a>
-    <a href="/logout">Logout</a>
-    <!--<a href="/addmoreinfo">add more info</a>-->
-</div>
+<body id="page-top">
 
-Logged user: <span sec:authentication="name">The user is not logged in yet</span><br/>
-<a href="/secure">Secure Page</a>
-<!--Roles: <span sec:authentication="principal.authorities">Principal Authorities not set</span>-->
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <div class="container">
+        <a class="navbar-brand js-scroll-trigger" href="/welcome">Home</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <div sec:authorize="hasAuthority('ADMIN')">
+                    <a class="nav-link js-scroll-trigger" href="/addpersonalinfo">Add Person</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <div sec:authorize="hasAuthority('USER')">
+                    <a class="nav-link js-scroll-trigger" href="/listperson">List Person</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link js-scroll-trigger" href="/logout">Logout</a>
+                </li>
+                <div sec:authorize="hasAuthority('ADMIN')">
+                <li class="nav-item">
+                <a class="nav-link js-scroll-trigger" href="/secure">Secure Page</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="/admin">admin</a>
+                </li>
+                </div>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<header class="masthead">
+    <div class="header-content">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-xs-12 col-sm-8 col-md-12 col-sm-offset-2 col-md-offset-3">
+                    <div class="text-vertical-center">
+                        <h1>Welcome to Robo Resume</h1>
+                        <br/>
+                        <div sec:authorize="isAuthenticated()">
+                            Welcome Back <span sec:authentication="name"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</header>
+
+<!-- Bootstrap core JavaScript -->
+<script src="../vendor/jquery/jquery.min.js"></script>
+<script src="../vendor/popper/popper.min.js"></script>
+<script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+
+<!-- Plugin JavaScript -->
+<script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+<script src="../vendor/scrollreveal/scrollreveal.min.js"></script>
+<script src="../vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
+
+<!-- Custom scripts for this template -->
+<script src="../js/creative.min.js"></script>
+
 </body>
+
 </html>
+
+
+
+<!--<!DOCTYPE html>-->
+<!--<html  xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">-->
+<!--<head lang="en">-->
+    <!--<meta charset="UTF-8"/>-->
+    <!--<title>Security Demonstation</title>-->
+
+<!--</head>-->
+<!--<body>-->
+
+<!--<h2>It worked!</h2>-->
+<!--<div sec:authorize="isAuthenticated()">-->
+    <!--Welcome Back <span sec:authentication="name"></span>-->
+<!--</div>-->
+<!--<div sec:authorize="hasAuthority('ADMIN')">-->
+    <!--You are an admin to this &#45;&#45;app.-->
+    <!--<a href="/secure">Secure Page</a>-->
+    <!--&lt;!&ndash;<a href="/logout"> Logout</a>&ndash;&gt;-->
+    <!--<a href="/addadmin"> Give Admin access</a>-->
+<!--</div>-->
+<!--<div sec:authorize="hasAuthority('USER')">-->
+    <!--<a href="/editprofile">Edit Profile</a>-->
+    <!--<a href="/logout">Logout</a>-->
+    <!--<a href="/addmoreinfo">add more info</a>-->
+<!--</div><div sec:authorize="hasAuthority('COMPANY')">-->
+    <!--<a href="/companyupdates">Post Updates</a>-->
+    <!--<a href="/logout">Logout</a>-->
+    <!--&lt;!&ndash;<a href="/addmoreinfo">add more info</a>&ndash;&gt;-->
+<!--</div>-->
+
+<!--Logged user: <span sec:authentication="name">The user is not logged in yet</span><br/>-->
+<!--<a href="/secure">Secure Page</a>-->
+<!--&lt;!&ndash;Roles: <span sec:authentication="principal.authorities">Principal Authorities not set</span>&ndash;&gt;-->
+<!--</body>-->
+<!--</html>-->

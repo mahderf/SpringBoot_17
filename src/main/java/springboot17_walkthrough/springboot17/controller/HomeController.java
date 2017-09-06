@@ -43,9 +43,13 @@ public class HomeController {
         if(bindingResult.hasErrors()){
             return"registration";
         }
+//        else if(user.isCompany())
+//        {
+//            userService.saveAdmin(user);
+//        }
         else
         {
-            userService.saveAdmin(user);
+            userService.saveUser(user);
             model.addAttribute("message","User Account Successfully Created");
         }
         return "login";

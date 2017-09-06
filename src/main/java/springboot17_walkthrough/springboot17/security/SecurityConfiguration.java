@@ -42,8 +42,7 @@ protected void configure(HttpSecurity http) throws Exception {
 //            .antMatchers("/admin").hasRole("ADMIN")
 //            .antMatchers("/user/login").permitAll()
 //            .antMatchers("/usertest").access("hasRole('ROLE_USER')")
-
-//            .antMatchers("/admin/**").hasRole("ADMIN")
+//            .antMatchers("/admin/**").hasRole("ADMIN")as
 //            .antMatchers("/admin/login").permitAll()
             .anyRequest().authenticated()
             .and()

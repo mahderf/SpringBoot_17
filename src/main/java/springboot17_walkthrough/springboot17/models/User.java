@@ -1,7 +1,5 @@
 package springboot17_walkthrough.springboot17.models;
 
-import springboot17_walkthrough.springboot17.models.Role;
-
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.HashSet;
@@ -30,6 +28,9 @@ public class User {
 
     @Column(name="username",unique = true)
     private String username;
+
+//    @Column(name="company")
+//    private boolean company;
 
     @ManyToMany(fetch= FetchType.EAGER)
     @JoinTable(joinColumns = @JoinColumn(name="user_id"),
