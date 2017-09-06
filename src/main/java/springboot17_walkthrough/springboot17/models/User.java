@@ -4,6 +4,7 @@ import springboot17_walkthrough.springboot17.models.Role;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.HashSet;
 
 @Entity
 @Table(name="USER_DATA")
@@ -33,9 +34,11 @@ public class User {
     @ManyToMany(fetch= FetchType.EAGER)
     @JoinTable(joinColumns = @JoinColumn(name="user_id"),
     inverseJoinColumns=@JoinColumn(name="role_id"))
-
     private Collection<Role> roles;
 
+    public  User(){
+        this.roles=new HashSet<Role>();
+    }
     public long getId() {
         return id;
     }

@@ -46,8 +46,8 @@ public class Role {
         this.users = users;
     }
 
-//    public void addUser(User usr)
-//    {
-//        users.add(usr);
-//    }
+    public void addUser(User usr)
+    {
+        users.add(usr);
+    }
 }

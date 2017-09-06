@@ -61,6 +61,7 @@ public class HomeController {
         otheruser.setEnabled(true);
 
 //        Role newrole=roleRepository.findOne(new Long(2));
+        //this finds the user
         Role newrole=roleRepository.findByRole("USER");
 //        newrole.setRole(newrole.getRole() );
         otheruser.addRole(newrole);
