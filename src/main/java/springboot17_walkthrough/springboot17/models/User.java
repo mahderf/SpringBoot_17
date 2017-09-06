@@ -14,7 +14,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @Column(name="email",nullable = false)
+    @Column(name="email",nullable = false,unique = true)
     private String email;
 
     @Column(name="first_name")
@@ -28,7 +28,7 @@ public class User {
     @Column(name="enabled")
     private boolean enabled;
 
-    @Column(name="username")
+    @Column(name="username",unique = true)
     private String username;
 
     @ManyToMany(fetch= FetchType.EAGER)

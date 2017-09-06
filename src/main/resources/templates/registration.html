@@ -40,10 +40,10 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <!--<li class="nav-item">-->
-                    <!--<a class="nav-link js-scroll-trigger" href="/addpersonalinfo">Add Person</a>-->
+                <!--<a class="nav-link js-scroll-trigger" href="/addpersonalinfo">Add Person</a>-->
                 <!--</li>-->
                 <!--<li class="nav-item">-->
-                    <!--<a class="nav-link js-scroll-trigger" href="/listperson">List Person</a>-->
+                <!--<a class="nav-link js-scroll-trigger" href="/listperson">List Person</a>-->
                 <!--</li>-->
                 <!--<li class="nav-item">-->
                 <!--<a class="nav-link js-scroll-trigger" href="#portfolio">Portfolio</a>-->
@@ -62,7 +62,7 @@
 
             <div class="row">
                 <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-6">
-                    <form action="#" th:action="@{/signup}" th:object="${newuser}" method="post">
+                    <form autocomplete="off" action="#" th:action="@{/register}" th:object="${user}" method="post">
                         <input type="hidden" th:field="*{id}">
                         <h2>Sign up<small>Here.</small></h2>
                         <hr class="colorgraph">
@@ -105,7 +105,6 @@
                         <hr class="colorgraph">
                         <div class="row">
                             <div class="col-xs-6 col-md-6"><input type="submit" value="Enter" class="btn btn-primary btn-block btn-lg" tabindex="7"></div>
-
                         </div>
                     </form>
                 </div>

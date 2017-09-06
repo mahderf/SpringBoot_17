@@ -3,14 +3,18 @@ package springboot17_walkthrough.springboot17.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import springboot17_walkthrough.springboot17.models.Role;
 import springboot17_walkthrough.springboot17.models.User;
 import springboot17_walkthrough.springboot17.repository.RoleRepository;
 import springboot17_walkthrough.springboot17.repository.UserRepository;
+import springboot17_walkthrough.springboot17.service.UserService;
 
+import javax.validation.Valid;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -23,15 +27,47 @@ public class HomeController {
     UserRepository userRepository;
     @Autowired
     RoleRepository roleRepository;
+    @Autowired
+    UserService userService;
+
+    @RequestMapping(value="/register",method= RequestMethod.GET)
+            public String showRegistrationPage(Model model)
+    {
+        model.addAttribute("user",new User());
+        return "registration";
+    }
+    @RequestMapping(value="/register", method = RequestMethod.POST)
+    public  String processRegistrationPage(@Valid @ModelAttribute("user") User user,
+                                           BindingResult bindingResult,Model model){
+        model.addAttribute("user", user);
+        if(bindingResult.hasErrors()){
+            return"registration";
+        }
+        else
+        {
+            userService.saveUser(user);
+            model.addAttribute("message","User Account Successfully Created");
+        }
+        return "login";
+    }
 
     @RequestMapping("/")
-    public String index()
+    public String home()
     {
+        return"welcome";
+    }
+
+    @RequestMapping("/index")
+    public String index(){
         return"index";
     }
+
 @RequestMapping("/login")
     public String logon(){
+
         return"login";
+
+
 }
 
     @RequestMapping("/admin")
@@ -48,11 +84,11 @@ public class HomeController {
     public String signUp( Model model){
        User newuser=new User();
        model.addAttribute("newuser", newuser);
-        Iterable<Role>test= roleRepository.findAllById(new Long(1));
-        for(Role item : test)
-        {
-            System.out.println(item.getRole());
-        }
+//        Iterable<Role>test= roleRepository.findAllById(new Long(1));
+//        for(Role item : test)
+//        {
+//            System.out.println(item.getRole());
+//        }
         return"signup";
     }
     @PostMapping("/signup")

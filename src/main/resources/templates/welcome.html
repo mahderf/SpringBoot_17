@@ -24,8 +24,6 @@
     <!-- Custom styles for this template -->
     <link href="../css/creative.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/formcss.css">
-    <link rel="stylesheet" href="../css/login.css">
-
 
 </head>
 
@@ -40,12 +38,12 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
-                <!--<li class="nav-item">-->
-                    <!--<a class="nav-link js-scroll-trigger" href="/addpersonalinfo">Add Person</a>-->
-                <!--</li>-->
-                <!--<li class="nav-item">-->
-                    <!--<a class="nav-link js-scroll-trigger" href="/register">Sign up</a>-->
-                <!--</li>-->
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="/login">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="/register">Sign up</a>
+                </li>
                 <!--<li class="nav-item">-->
                 <!--<a class="nav-link js-scroll-trigger" href="#portfolio">Portfolio</a>-->
                 <!--</li>-->
@@ -63,29 +61,18 @@
 
             <div class="row">
                 <div class="col-xs-12 col-sm-8 col-md-12 col-sm-offset-2 col-md-offset-3">
-                    <h2>Robo Login</h2>
-
-                    <form th:action="@{/login}" method="post">
-
-                        <label for=""></label>
-                        <input type="text" name="username"  placeholder="username" class="name"/>
-
-                        <label for=""></label>
-                        <input type="password" name="password" id="" placeholder="password" class="pass"/>
-                        <div class="warning" th:if="${param.error}">
-                            Invalid username and password.
-                        </div>
-                        <div th:if="${param.logout}">
-                            You have been logged out.
-                        </div>
-                        <button type="submit">login to your account</button>
-                        <a class="nav-link js-scroll-trigger" href="/register">Sign Up</a>
-                    </form>
+                    <div class="text-vertical-center">
+                        <h1>Welcome</h1>
+                        <br/>
+                        <!--<a href="/welcome" class="btn btn-dark btn-lg js-scroll-trigger">Login</a>-->
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
 </header>
+
 <!-- Bootstrap core JavaScript -->
 <script src="../vendor/jquery/jquery.min.js"></script>
 <script src="../vendor/popper/popper.min.js"></script>

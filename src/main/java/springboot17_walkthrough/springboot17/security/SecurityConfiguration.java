@@ -3,6 +3,7 @@ package springboot17_walkthrough.springboot17.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -13,6 +14,7 @@ import springboot17_walkthrough.springboot17.service.SSUserDetailsService;
 
 @Configuration
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 @Autowired
@@ -30,13 +32,16 @@ protected void configure(HttpSecurity http) throws Exception {
 
     http
             .authorizeRequests()
-            .antMatchers("/","/signup","/css/**","/js/**","/img/**","/vendor/**","/scss/**").permitAll()
-            .antMatchers("/admin")
-            .access("hasRole('ROLE_ADMIN')")
+            .antMatchers("/","/signup","/css/**","/js/**",
+                    "/img/**","/vendor/**","/scss/**","/register").permitAll()
+//            .antMatchers("/admin")
+//            .access("hasRole('ADMIN')")
             .antMatchers("/admin").access("hasRole('ROLE_ADMIN')")
+            .antMatchers("/usertest").access("hasRole('ROLE_USER')")
             .anyRequest().authenticated()
             .and()
             .formLogin().loginPage("/login").permitAll()
+            .defaultSuccessUrl("/index")
             .and()
             .logout()
             .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))// we don't need an extra page for logout this will do the trick

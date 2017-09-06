@@ -7,5 +7,6 @@ public interface RoleRepository extends CrudRepository<Role,Long>{
 Iterable<Role>findAllById(Long Long);
 Iterable<Role>findRoleByRole(String String);
 Role findByRole(String role);
+
 }
 
