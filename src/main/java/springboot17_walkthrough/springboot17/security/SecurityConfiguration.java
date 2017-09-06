@@ -14,11 +14,13 @@ import springboot17_walkthrough.springboot17.service.SSUserDetailsService;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+
 @Autowired
 private SSUserDetailsService userDetailsService;
 @Autowired
 private UserRepository userRepository;
 
+//allows userDetailservice to use this repo
 @Override
 public UserDetailsService userDetailsServiceBean() throws Exception{
     return new SSUserDetailsService(userRepository);
@@ -37,10 +39,10 @@ protected void configure(HttpSecurity http) throws Exception {
             .formLogin().loginPage("/login").permitAll()
             .and()
             .logout()
-            .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-            .logoutSuccessUrl("/login").permitAll().permitAll()
+            .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))// we don't need an extra page for logout this will do the trick
+            .logoutSuccessUrl("/login").permitAll().permitAll()// we're telling it to go back to the login page after logout
             .and()
-            .httpBasic();
+            .httpBasic();// this allows to login using the password and user in the console, it doesn't matter if we take it out
 
     http
             .csrf().disable();

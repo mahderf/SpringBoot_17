@@ -2,6 +2,7 @@ package springboot17_walkthrough.springboot17.models;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.HashSet;
 
 @Entity
 public class Role {
@@ -15,6 +16,11 @@ public class Role {
 
     @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
     private Collection<User>users;
+
+  public Role(){
+
+    this.users=new HashSet<User>();
+   }
 
     public long getId() {
         return id;
@@ -40,8 +46,8 @@ public class Role {
         this.users = users;
     }
 
-    public void addUser(User usr)
-    {
-        users.add(usr);
-    }
+//    public void addUser(User usr)
+//    {
+//        users.add(usr);
+//    }
 }

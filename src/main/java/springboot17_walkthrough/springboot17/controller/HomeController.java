@@ -15,6 +15,8 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
+import static org.springframework.boot.autoconfigure.security.SecurityAuthorizeMode.ROLE;
+
 @Controller
 public class HomeController {
     @Autowired
@@ -41,6 +43,7 @@ public class HomeController {
     public String secure(){
         return "secure";
     }
+
     @RequestMapping("/signup")
     public String signUp( Model model){
        User newuser=new User();
@@ -54,19 +57,21 @@ public class HomeController {
     }
     @PostMapping("/signup")
     public String postNewUser(@ModelAttribute("newuser") User otheruser){
+
         otheruser.setEnabled(true);
 
-        Role newrole=roleRepository.findOne(new Long(2));
-//        Role newrole=roleRepository.findRoleByRole(new String("USER"));
-        newrole.setRole(newrole.getRole() );
+//        Role newrole=roleRepository.findOne(new Long(2));
+        Role newrole=roleRepository.findByRole("USER");
+//        newrole.setRole(newrole.getRole() );
+        otheruser.addRole(newrole);
 
 //       roleRepository.save(newrole);
 //        Collection<User>newcolluser=
 //         newrole.setUsers();
-
-        Set<Role> roles= new HashSet<>();
-        roles.add(newrole);
-        otheruser.setRoles(roles);
+//
+//        Set<Role> roles= new HashSet<>();
+//        roles.add(newrole);
+//        otheruser.setRoles(roles);
         userRepository.save(otheruser);
 
 
