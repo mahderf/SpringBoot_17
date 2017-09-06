@@ -45,7 +45,7 @@ public class HomeController {
         }
         else
         {
-            userService.saveUser(user);
+            userService.saveAdmin(user);
             model.addAttribute("message","User Account Successfully Created");
         }
         return "login";

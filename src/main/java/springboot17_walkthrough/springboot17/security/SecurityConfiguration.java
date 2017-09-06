@@ -32,16 +32,18 @@ protected void configure(HttpSecurity http) throws Exception {
 
     http
             .authorizeRequests()
+//            .antMatchers("/admin").hasRole("ADMIN or USER")
             .antMatchers("/","/signup","/css/**","/js/**",
                     "/img/**","/vendor/**","/scss/**","/register").permitAll()
-//            .antMatchers("/admin")
-//            .access("hasRole('ADMIN')")
+//
+            .antMatchers("/admin").access("hasRole('ADMIN')")
+
             //doesn't work on giving access f the url to the roles
 //            .antMatchers("/admin").hasRole("ADMIN")
 //            .antMatchers("/user/login").permitAll()
 //            .antMatchers("/usertest").access("hasRole('ROLE_USER')")
-//            .antMatchers("/admin").access("hasRole('ADMIN')")
-            .antMatchers("/admin/**").hasRole("ADMIN")
+
+//            .antMatchers("/admin/**").hasRole("ADMIN")
 //            .antMatchers("/admin/login").permitAll()
             .anyRequest().authenticated()
             .and()
