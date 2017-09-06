@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Robo Resume</title>
+    <title>SpringBoot20</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -39,12 +39,12 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="/addpersonalinfo">Add Person</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="/listperson">List Person</a>
-                </li>
+                <!--<li class="nav-item">-->
+                    <!--<a class="nav-link js-scroll-trigger" href="/addpersonalinfo">Add Person</a>-->
+                <!--</li>-->
+                <!--<li class="nav-item">-->
+                    <!--<a class="nav-link js-scroll-trigger" href="/listperson">List Person</a>-->
+                <!--</li>-->
                 <!--<li class="nav-item">-->
                 <!--<a class="nav-link js-scroll-trigger" href="#portfolio">Portfolio</a>-->
                 <!--</li>-->
@@ -93,12 +93,15 @@
                         <div th:if="${#fields.hasErrors('username')}"  th:errors="*{username}"
                              class="well alert alert-warning" role="alert"></div>
                         <div class="form-group">
-                            <input type="text" th:field="*{password}"name="password" id="password" class="form-control input-lg" placeholder="Password" tabindex="4">
+                            <input type="password" th:field="*{password}"name="password" id="password" class="form-control input-lg" placeholder="Password" tabindex="4">
+                            <!--<input type="password" th:field="*{password}"name="confirm_password" id="confirm_password" class="form-control input-lg" placeholder="Confirm Password" tabindex="4">-->
                         </div>
                         <div th:if="${#fields.hasErrors('password')}"  th:errors="*{password}"
                              class="well alert alert-warning" role="alert"></div>
-
-
+                        <!--<div>-->
+                        <!--<input type="password" name="password" value="" class="form-control input-lg" placeholder="Password"  />-->
+                        <!--<input type="password" name="confirm_password" value="" class="form-control input-lg" placeholder="Confirm Password"  />-->
+                        <!--</div>-->
                         <hr class="colorgraph">
                         <div class="row">
                             <div class="col-xs-6 col-md-6"><input type="submit" value="Enter" class="btn btn-primary btn-block btn-lg" tabindex="7"></div>

@@ -45,22 +45,27 @@ public class HomeController {
     public String signUp( Model model){
        User newuser=new User();
        model.addAttribute("newuser", newuser);
+        Iterable<Role>test= roleRepository.findAllById(new Long(1));
+        for(Role item : test)
+        {
+            System.out.println(item.getRole());
+        }
         return"signup";
     }
     @PostMapping("/signup")
     public String postNewUser(@ModelAttribute("newuser") User otheruser){
         otheruser.setEnabled(true);
 
-        Role newrole=new Role();
-        newrole.setRole("USER" );
+        Role newrole=roleRepository.findOne(new Long(2));
+//        Role newrole=roleRepository.findRoleByRole(new String("USER"));
+        newrole.setRole(newrole.getRole() );
 
-       roleRepository.save(newrole);
+//       roleRepository.save(newrole);
 //        Collection<User>newcolluser=
 //         newrole.setUsers();
 
         Set<Role> roles= new HashSet<>();
         roles.add(newrole);
-
         otheruser.setRoles(roles);
         userRepository.save(otheruser);
 
