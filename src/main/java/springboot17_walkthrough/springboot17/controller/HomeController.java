@@ -40,13 +40,33 @@ public class HomeController {
     public  String processRegistrationPage(@Valid @ModelAttribute("user") User user,
                                            BindingResult bindingResult,Model model){
         model.addAttribute("user", user);
+
+        Iterable<User>checkusername=userRepository.findAllByUsername(user.getUsername());
+        long count=checkusername.spliterator().getExactSizeIfKnown();
+        System.out.println("++++++++++++++++++"+count+"++++++++++++++");
+        if(count>0)
+        {
+            String existingusername="username '"+user.getUsername()+"' isn't available. Choose a different one";
+            model.addAttribute("msg",existingusername);
+            model.addAttribute("count",count);
+            return "registration";
+        }
+
+        Iterable<User>checkemail=userRepository.findAllByEmail(user.getEmail());
+        long emcount=checkemail.spliterator().getExactSizeIfKnown();
+        System.out.println("++++++++++++++++++"+emcount+"++++++++++++++");
+        if(emcount>0)
+        {
+            String existingemail="This email address '"+user.getEmail()+"' is already registered.";
+            model.addAttribute("emmsg",existingemail);
+            model.addAttribute("emcount",emcount);
+            return "registration";
+        }
+
         if(bindingResult.hasErrors()){
             return"registration";
         }
-//        else if(user.isCompany())
-//        {
-//            userService.saveAdmin(user);
-//        }
+
         else
         {
             userService.saveUser(user);
@@ -84,38 +104,38 @@ public class HomeController {
         return "secure";
     }
 
-    @RequestMapping("/signup")
-    public String signUp( Model model){
-       User newuser=new User();
-       model.addAttribute("newuser", newuser);
-//        Iterable<Role>test= roleRepository.findAllById(new Long(1));
-//        for(Role item : test)
-//        {
-//            System.out.println(item.getRole());
-//        }
-        return"signup";
-    }
-    @PostMapping("/signup")
-    public String postNewUser(@ModelAttribute("newuser") User otheruser){
-
-        otheruser.setEnabled(true);
-
-//        Role newrole=roleRepository.findOne(new Long(2));
-        //this finds the user
-        Role newrole=roleRepository.findByRole("USER");
-//        newrole.setRole(newrole.getRole() );
-        otheruser.addRole(newrole);
-
-//       roleRepository.save(newrole);
-//        Collection<User>newcolluser=
-//         newrole.setUsers();
+//    @RequestMapping("/signup")
+//    public String signUp( Model model){
+//       User newuser=new User();
+//       model.addAttribute("newuser", newuser);
+////        Iterable<Role>test= roleRepository.findAllById(new Long(1));
+////        for(Role item : test)
+////        {
+////            System.out.println(item.getRole());
+////        }
+//        return"signup";
+//    }
+//    @PostMapping("/signup")
+//    public String postNewUser(@ModelAttribute("newuser") User otheruser){
 //
-//        Set<Role> roles= new HashSet<>();
-//        roles.add(newrole);
-//        otheruser.setRoles(roles);
-        userRepository.save(otheruser);
-
-
-        return"postuser";
-    }
+//        otheruser.setEnabled(true);
+//
+////        Role newrole=roleRepository.findOne(new Long(2));
+//        //this finds the user
+//        Role newrole=roleRepository.findByRole("USER");
+////        newrole.setRole(newrole.getRole() );
+//        otheruser.addRole(newrole);
+//
+////       roleRepository.save(newrole);
+////        Collection<User>newcolluser=
+////         newrole.setUsers();
+////
+////        Set<Role> roles= new HashSet<>();
+////        roles.add(newrole);
+////        otheruser.setRoles(roles);
+//        userRepository.save(otheruser);
+//
+//
+//        return"postuser";
+//    }
 }
