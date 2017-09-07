@@ -1,0 +1,44 @@
+div{
+    width:960px;
+    margin:40px auto;
+    font-size:18px;
+}
+
+table{
+    width:100%;
+    table-layout: fixed;
+    color: black;
+}
+
+th, td{
+    padding:10px;
+    border:1px solid #000;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+}
+
+th{
+    background:#c00;
+    color:#fff;
+    font-weight: normal;
+    font-size:18px;
+}
+
+tr:nth-child(odd){
+    background:#eee;
+}
+
+tr:nth-child(even){
+    background:#ddd;
+}
+
+tfoot td{
+    font-weight:bold;
+    font-size:18px;
+    border-top:3px double #c00;
+}
+
+tr:hover{
+    background:#fff2a8;
+}
