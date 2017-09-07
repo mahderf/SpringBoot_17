@@ -36,7 +36,7 @@ protected void configure(HttpSecurity http) throws Exception {
             .antMatchers("/","/signup","/css/**","/js/**",
                     "/img/**","/vendor/**","/scss/**","/register").permitAll()
 //
-            .antMatchers("/admin").access("hasRole('ADMIN')")
+            .antMatchers("/admin").access("hasAuthority('ADMIN')")
 
             //doesn't work on giving access f the url to the roles
 //            .antMatchers("/admin").hasRole("ADMIN")
